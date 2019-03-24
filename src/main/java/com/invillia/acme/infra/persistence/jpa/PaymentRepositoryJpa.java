@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.util.Optional;
 
 @Repository
 public class PaymentRepositoryJpa implements PaymentRepository {
@@ -16,6 +17,17 @@ public class PaymentRepositoryJpa implements PaymentRepository {
     @Override
     public void create(Payment payment) {
         entityManager.persist(payment);
+        entityManager.flush();
+    }
+
+    @Override
+    public Optional<Payment> find(Long id) {
+        return Optional.ofNullable(entityManager.find(Payment.class, id));
+    }
+
+    @Override
+    public void update(Payment payment) {
+        entityManager.merge(payment);
         entityManager.flush();
     }
 }

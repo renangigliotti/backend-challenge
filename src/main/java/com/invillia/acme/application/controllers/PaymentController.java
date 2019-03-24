@@ -4,10 +4,7 @@ import com.invillia.acme.domain.commands.CreatePaymentCommand;
 import com.invillia.acme.domain.services.PaymentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.Serializable;
@@ -33,5 +30,12 @@ public class PaymentController implements Serializable {
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    @PostMapping("/{id}/complete")
+    public ResponseEntity<Void> Complete(@PathVariable Long id) {
+        paymentService.complete(id);
+
+        return ResponseEntity.noContent().build();
     }
 }

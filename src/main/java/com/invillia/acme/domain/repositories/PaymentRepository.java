@@ -2,6 +2,8 @@ package com.invillia.acme.domain.repositories;
 
 import com.invillia.acme.domain.entity.Payment;
 
+import java.util.Optional;
+
 /**
  * Repository of Payments.
  *
@@ -10,4 +12,8 @@ import com.invillia.acme.domain.entity.Payment;
  */
 public interface PaymentRepository {
     void create(Payment payment);
+
+    Optional<Payment> find(Long id);
+
+    void update(Payment payment);
 }
