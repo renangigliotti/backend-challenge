@@ -47,7 +47,7 @@ public class PaymentService {
 
         order.setPayment(payment);
         order.setStatus(OrderStatus.PAYMENT_ACCEPT);
-        order.setConfirmationDate(LocalDateTime.now());
+
         orderRepository.update(order);
 
         return payment.getId();
@@ -68,7 +68,7 @@ public class PaymentService {
 
         refundRepository.create(refund);
 
-        order.setStatus(OrderStatus.REDUNDED);
+        order.setStatus(OrderStatus.REFUNDED);
         orderRepository.update(order);
 
         return refund.getId();
@@ -92,9 +92,26 @@ public class PaymentService {
         return refund.getId();
     }
 
+    @Transactional
+    public void complete(Long id) {
+        Payment payment = paymentRepository.find(id).orElseThrow(NotFoundException::new);
+
+        payment.setStatus(PaymentStatus.COMPLETED);
+        paymentRepository.update(payment);
+
+        Order order = orderRepository.find(payment.getOrder().getId()).orElseThrow(NotFoundException::new);
+        order.setStatus(OrderStatus.TRANSPORT);
+        order.setConfirmationDate(LocalDateTime.now());
+
+        orderRepository.update(order);
+    }
+
     private void validateOrderToRefund(Order order) {
         if (order.getStatus().equals(OrderStatus.PAYMENT_PENDING))
             throw new PaymentRequiredException();
+
+        if (order.getStatus().equals(OrderStatus.PAYMENT_ACCEPT))
+            throw new PaymentPendingException();
 
         if (order.getStatus().equals(OrderStatus.CANCELLED))
             throw new OrderCanceledException();
@@ -106,18 +123,5 @@ public class PaymentService {
     private void validatePaymentToRefund(Payment payment) {
         if (!payment.getStatus().equals(PaymentStatus.COMPLETED))
             throw new PaymentPendingException();
-    }
-
-    @Transactional
-    public void complete(Long id) {
-        Payment payment = paymentRepository.find(id).orElseThrow(NotFoundException::new);
-
-        payment.setStatus(PaymentStatus.COMPLETED);
-        paymentRepository.update(payment);
-
-        Order order = orderRepository.find(payment.getOrder().getId()).orElseThrow(NotFoundException::new);
-        order.setStatus(OrderStatus.TRANSPORT);
-
-        orderRepository.update(order);
     }
 }
