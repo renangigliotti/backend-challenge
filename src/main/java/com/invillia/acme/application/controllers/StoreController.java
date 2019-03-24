@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Endpoint REST of Stores.
@@ -38,7 +39,7 @@ public class StoreController implements Serializable {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<StoreQuery> Find(@PathVariable("id") Long id) {
+    public ResponseEntity<StoreQuery> Find(@PathVariable("id") UUID id) {
         final StoreQuery store = storeService.find(id);
 
         if (store == null)
@@ -49,7 +50,7 @@ public class StoreController implements Serializable {
 
     @PostMapping()
     public ResponseEntity<Void> Create(@RequestBody CreateStoreCommand command) {
-        final Long id = storeService.create(command);
+        final UUID id = storeService.create(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();
 
@@ -57,8 +58,8 @@ public class StoreController implements Serializable {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> Update(@PathVariable("id") Long id, @RequestBody UpdateStoreCommand command) {
-        if (command.getId() != id)
+    public ResponseEntity<Void> Update(@PathVariable("id") UUID id, @RequestBody UpdateStoreCommand command) {
+        if (!command.getId().equals(id))
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
 
         storeService.update(command);

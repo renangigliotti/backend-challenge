@@ -10,6 +10,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class OrderRepositoryJpa implements OrderRepository {
@@ -24,7 +25,7 @@ public class OrderRepositoryJpa implements OrderRepository {
     }
 
     @Override
-    public Optional<Order> find(Long id) {
+    public Optional<Order> find(UUID id) {
         return Optional.ofNullable(entityManager.find(Order.class, id));
     }
 

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
+import java.util.UUID;
 
 
 /**
@@ -37,7 +38,7 @@ public class OrderController implements Serializable {
 
     @PostMapping()
     public ResponseEntity<Void> Create(@RequestBody CreateOrderCommand command) {
-        Long id = orderService.create(command);
+        UUID id = orderService.create(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();
 

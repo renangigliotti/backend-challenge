@@ -15,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class PaymentService {
@@ -38,7 +39,7 @@ public class PaymentService {
     }
 
     @Transactional
-    public Long create(CreatePaymentCommand command) {
+    public UUID create(CreatePaymentCommand command) {
         Order order = orderRepository.find(command.getOrderId()).orElseThrow(NotFoundException::new);
 
         Payment payment = new Payment();
@@ -58,7 +59,7 @@ public class PaymentService {
     }
 
     @Transactional
-    public Long refund(CreateOrderRefundCommand command) {
+    public UUID refund(CreateOrderRefundCommand command) {
         Order order = orderRepository.find(command.getOrderId()).orElseThrow(NotFoundException::new);
 
         validateOrderToRefund(order);
@@ -79,7 +80,7 @@ public class PaymentService {
     }
 
     @Transactional
-    public Long refund(CreateOrderItemRefundCommand command) {
+    public UUID refund(CreateOrderItemRefundCommand command) {
         OrderItem orderItem = orderItemRepository.find(command.getOrderItemId()).orElseThrow(NotFoundException::new);
 
         validateOrderToRefund(orderItem.getOrder());
@@ -97,7 +98,7 @@ public class PaymentService {
     }
 
     @Transactional
-    public void complete(Long id) {
+    public void complete(UUID id) {
         Payment payment = paymentRepository.find(id).orElseThrow(NotFoundException::new);
 
         payment.setStatus(PaymentStatus.COMPLETED);

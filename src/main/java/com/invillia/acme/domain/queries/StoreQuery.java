@@ -1,21 +1,23 @@
 package com.invillia.acme.domain.queries;
 
+import java.util.UUID;
+
 public class StoreQuery {
-    private Long id;
+    private UUID id;
     private String name;
     private String address;
 
-    public StoreQuery(Long id, String name, String address) {
+    public StoreQuery(UUID id, String name, String address) {
         this.id = id;
         this.name = name;
         this.address = address;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 

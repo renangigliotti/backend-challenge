@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class OrderItemRepositoryJpa implements OrderItemRepository {
@@ -16,7 +17,7 @@ public class OrderItemRepositoryJpa implements OrderItemRepository {
     protected EntityManager entityManager;
 
     @Override
-    public Optional<OrderItem> find(Long id) {
+    public Optional<OrderItem> find(UUID id) {
         return Optional.ofNullable(entityManager.find(OrderItem.class, id));
     }
 

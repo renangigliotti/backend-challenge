@@ -3,6 +3,7 @@ package com.invillia.acme.domain.repositories;
 import com.invillia.acme.domain.entity.OrderItem;
 
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Repository of OrderItems.
@@ -11,7 +12,7 @@ import java.util.Optional;
  * @since 1.0
  */
 public interface OrderItemRepository {
-    Optional<OrderItem> find(Long id);
+    Optional<OrderItem> find(UUID id);
 
     void create(OrderItem orderItem);
 }

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 /**
@@ -30,7 +31,7 @@ public class StoreService {
     }
 
     @Transactional
-    public Long create(CreateStoreCommand command) {
+    public UUID create(CreateStoreCommand command) {
         final Store store = new Store();
         store.setName(command.getName());
         store.setAddress(command.getAddress());
@@ -53,7 +54,7 @@ public class StoreService {
         return storeRepository.list(name, address).stream().map(s -> new StoreQuery(s.getId(), s.getName(), s.getAddress())).collect(Collectors.toList());
     }
 
-    public StoreQuery find(Long id) {
+    public StoreQuery find(UUID id) {
         final Store store = storeRepository.find(id).orElseThrow(NotFoundException::new);
 
         return new StoreQuery(store.getId(), store.getName(), store.getAddress());

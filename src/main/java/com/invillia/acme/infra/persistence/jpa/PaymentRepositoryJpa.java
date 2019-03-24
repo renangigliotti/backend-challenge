@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class PaymentRepositoryJpa implements PaymentRepository {
@@ -21,7 +22,7 @@ public class PaymentRepositoryJpa implements PaymentRepository {
     }
 
     @Override
-    public Optional<Payment> find(Long id) {
+    public Optional<Payment> find(UUID id) {
         return Optional.ofNullable(entityManager.find(Payment.class, id));
     }
 

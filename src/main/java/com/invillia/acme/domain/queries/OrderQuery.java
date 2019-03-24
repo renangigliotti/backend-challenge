@@ -1,34 +1,36 @@
 package com.invillia.acme.domain.queries;
 
-public class OrderQuery {
-    private Long id;
+import java.util.UUID;
 
-    private Long storeId;
+public class OrderQuery {
+    private UUID id;
+
+    private UUID storeId;
 
     private String address;
 
     private String status;
 
-    public OrderQuery(Long id, Long storeId, String address, String status) {
+    public OrderQuery(UUID id, UUID storeId, String address, String status) {
         this.id = id;
         this.storeId = storeId;
         this.address = address;
         this.status = status;
     }
 
-    public Long getId() {
+    public UUID getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(UUID id) {
         this.id = id;
     }
 
-    public Long getStoreId() {
+    public UUID getStoreId() {
         return storeId;
     }
 
-    public void setStoreId(Long storeId) {
+    public void setStoreId(UUID storeId) {
         this.storeId = storeId;
     }
 

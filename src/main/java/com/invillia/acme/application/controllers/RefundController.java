@@ -13,6 +13,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.UUID;
 
 /**
  * Endpoint REST of Refunds.
@@ -33,7 +34,7 @@ public class RefundController implements Serializable {
 
     @PostMapping("orders")
     public ResponseEntity<Void> RefundOrder(@RequestBody CreateOrderRefundCommand command) {
-        Long refundId = paymentService.refund(command);
+        UUID refundId = paymentService.refund(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(refundId).toUri();
 
@@ -42,7 +43,7 @@ public class RefundController implements Serializable {
 
     @PostMapping("items")
     public ResponseEntity RefundOrderItem(@RequestBody CreateOrderItemRefundCommand command) {
-        Long refundId = paymentService.refund(command);
+        UUID refundId = paymentService.refund(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(refundId).toUri();
 

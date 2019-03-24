@@ -11,6 +11,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 @Repository
 public class StoreRepositoryJpa implements StoreRepository {
@@ -48,7 +49,7 @@ public class StoreRepositoryJpa implements StoreRepository {
     }
 
     @Override
-    public Optional<Store> find(Long id) {
+    public Optional<Store> find(UUID id) {
         if (id == null) {
             return Optional.empty();
         }

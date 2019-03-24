@@ -9,6 +9,7 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.io.Serializable;
 import java.net.URI;
+import java.util.UUID;
 
 /**
  * Endpoint REST of Payments.
@@ -29,7 +30,7 @@ public class PaymentController implements Serializable {
 
     @PostMapping()
     public ResponseEntity<Void> Create(@RequestBody CreatePaymentCommand command) {
-        Long id = paymentService.create(command);
+        UUID id = paymentService.create(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();
 
@@ -37,7 +38,7 @@ public class PaymentController implements Serializable {
     }
 
     @PostMapping("/{id}/complete")
-    public ResponseEntity<Void> Complete(@PathVariable Long id) {
+    public ResponseEntity<Void> Complete(@PathVariable UUID id) {
         paymentService.complete(id);
 
         return ResponseEntity.noContent().build();

@@ -4,6 +4,7 @@ import com.invillia.acme.domain.entity.Store;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.UUID;
 
 /**
  * Repository of Stores.
@@ -18,5 +19,5 @@ public interface StoreRepository {
 
     List<Store> list(String name, String address);
 
-    Optional<Store> find(Long id);
+    Optional<Store> find(UUID id);
 }

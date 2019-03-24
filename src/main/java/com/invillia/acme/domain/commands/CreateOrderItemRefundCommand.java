@@ -1,13 +1,10 @@
 package com.invillia.acme.domain.commands;
 
+import lombok.Data;
+
+import java.util.UUID;
+
+@Data
 public class CreateOrderItemRefundCommand {
-    public Long orderItemId;
-
-    public Long getOrderItemId() {
-        return orderItemId;
-    }
-
-    public void setOrderItemId(Long orderItemId) {
-        this.orderItemId = orderItemId;
-    }
+    public UUID orderItemId;
 }

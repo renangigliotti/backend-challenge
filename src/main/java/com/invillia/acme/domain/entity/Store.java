@@ -3,6 +3,7 @@ package com.invillia.acme.domain.entity;
 import lombok.Data;
 
 import javax.persistence.*;
+import java.util.UUID;
 
 @Entity
 @Data
@@ -10,8 +11,8 @@ import javax.persistence.*;
 public class Store {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "seq_stores")
-    private Long id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private UUID id;
 
     private String name;
 
