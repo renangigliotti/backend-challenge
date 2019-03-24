@@ -24,8 +24,12 @@ import java.util.List;
 @RequestMapping("/stores")
 public class StoreController implements Serializable {
 
+    private final StoreService storeService;
+
     @Autowired
-    private StoreService storeService;
+    public StoreController(StoreService storeService) {
+        this.storeService = storeService;
+    }
 
     @GetMapping()
     public ResponseEntity<List<StoreQuery>> List(@RequestParam(value = "name", required = false) String name,

@@ -26,14 +26,18 @@ import java.util.stream.Collectors;
 @Service
 public class OrderService {
 
-    @Autowired
-    private StoreRepository storeRepository;
+    private final StoreRepository storeRepository;
+
+    private final OrderRepository orderRepository;
+
+    private final OrderItemRepository orderItemRepository;
 
     @Autowired
-    private OrderRepository orderRepository;
-
-    @Autowired
-    private OrderItemRepository orderItemRepository;
+    public OrderService(StoreRepository storeRepository, OrderRepository orderRepository, OrderItemRepository orderItemRepository) {
+        this.storeRepository = storeRepository;
+        this.orderRepository = orderRepository;
+        this.orderItemRepository = orderItemRepository;
+    }
 
     @Transactional
     public Long create(CreateOrderCommand command) {

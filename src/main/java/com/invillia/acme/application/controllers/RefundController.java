@@ -24,8 +24,12 @@ import java.net.URI;
 @RequestMapping("/refunds")
 public class RefundController implements Serializable {
 
+    private final PaymentService paymentService;
+
     @Autowired
-    private PaymentService paymentService;
+    public RefundController(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 
     @PostMapping("orders")
     public ResponseEntity<Void> RefundOrder(@RequestBody CreateOrderRefundCommand command) {

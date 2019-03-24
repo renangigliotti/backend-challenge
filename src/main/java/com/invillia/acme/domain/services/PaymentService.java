@@ -21,17 +21,21 @@ public class PaymentService {
 
     private final int REFUND_EXPIRES = 10;
 
-    @Autowired
-    private OrderRepository orderRepository;
+    private final OrderRepository orderRepository;
+
+    private final OrderItemRepository orderItemRepository;
+
+    private final PaymentRepository paymentRepository;
+
+    private final RefundRepository refundRepository;
 
     @Autowired
-    private OrderItemRepository orderItemRepository;
-
-    @Autowired
-    private PaymentRepository paymentRepository;
-
-    @Autowired
-    private RefundRepository refundRepository;
+    public PaymentService(OrderRepository orderRepository, OrderItemRepository orderItemRepository, PaymentRepository paymentRepository, RefundRepository refundRepository) {
+        this.orderRepository = orderRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.paymentRepository = paymentRepository;
+        this.refundRepository = refundRepository;
+    }
 
     @Transactional
     public Long create(CreatePaymentCommand command) {

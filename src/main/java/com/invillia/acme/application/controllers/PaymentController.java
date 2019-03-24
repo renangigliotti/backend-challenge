@@ -20,8 +20,12 @@ import java.net.URI;
 @RequestMapping("/payments")
 public class PaymentController implements Serializable {
 
+    private final PaymentService paymentService;
+
     @Autowired
-    private PaymentService paymentService;
+    public PaymentController(PaymentService paymentService) {
+        this.paymentService = paymentService;
+    }
 
     @PostMapping()
     public ResponseEntity<Void> Create(@RequestBody CreatePaymentCommand command) {

@@ -23,9 +23,12 @@ import java.util.List;
 @RequestMapping("/orders")
 public class OrderController implements Serializable {
 
-    @Autowired
-    private OrderService orderService;
+    private final OrderService orderService;
 
+    @Autowired
+    public OrderController(OrderService orderService) {
+        this.orderService = orderService;
+    }
 
     @GetMapping()
     public ResponseEntity<List<OrderQuery>> List() {

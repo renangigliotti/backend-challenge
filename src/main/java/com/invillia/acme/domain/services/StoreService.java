@@ -22,8 +22,12 @@ import java.util.stream.Collectors;
 @Service
 public class StoreService {
 
+    private final StoreRepository storeRepository;
+
     @Autowired
-    private StoreRepository storeRepository;
+    public StoreService(StoreRepository storeRepository) {
+        this.storeRepository = storeRepository;
+    }
 
     @Transactional
     public Long create(CreateStoreCommand command) {
