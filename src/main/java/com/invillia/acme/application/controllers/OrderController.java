@@ -1,7 +1,7 @@
 package com.invillia.acme.application.controllers;
 
 import com.invillia.acme.domain.commands.CreateOrderCommand;
-import com.invillia.acme.domain.querys.OrderQuery;
+import com.invillia.acme.domain.queries.OrderQuery;
 import com.invillia.acme.domain.services.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

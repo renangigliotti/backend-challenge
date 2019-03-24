@@ -1,4 +1,4 @@
-package com.invillia.acme.domain.querys;
+package com.invillia.acme.domain.queries;
 
 import java.math.BigDecimal;
 

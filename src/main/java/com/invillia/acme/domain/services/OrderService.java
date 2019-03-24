@@ -6,7 +6,7 @@ import com.invillia.acme.domain.entity.OrderItem;
 import com.invillia.acme.domain.entity.OrderStatus;
 import com.invillia.acme.domain.entity.Store;
 import com.invillia.acme.domain.exceptions.NotFoundException;
-import com.invillia.acme.domain.querys.OrderQuery;
+import com.invillia.acme.domain.queries.OrderQuery;
 import com.invillia.acme.domain.repositories.OrderItemRepository;
 import com.invillia.acme.domain.repositories.OrderRepository;
 import com.invillia.acme.domain.repositories.StoreRepository;

@@ -4,7 +4,7 @@ import com.invillia.acme.domain.commands.CreateStoreCommand;
 import com.invillia.acme.domain.commands.UpdateStoreCommand;
 import com.invillia.acme.domain.entity.Store;
 import com.invillia.acme.domain.exceptions.NotFoundException;
-import com.invillia.acme.domain.querys.StoreQuery;
+import com.invillia.acme.domain.queries.StoreQuery;
 import com.invillia.acme.domain.repositories.StoreRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

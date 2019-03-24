@@ -1,4 +1,4 @@
-package com.invillia.acme.domain.querys;
+package com.invillia.acme.domain.queries;
 
 public class OrderQuery {
     private Long id;
