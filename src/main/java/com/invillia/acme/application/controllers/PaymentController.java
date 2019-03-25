@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.UUID;
@@ -31,7 +32,7 @@ public class PaymentController implements Serializable {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> Create(@RequestBody CreatePaymentCommand command) {
+    public ResponseEntity<Void> Create(@RequestBody @Valid CreatePaymentCommand command) {
         UUID id = paymentService.create(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();

@@ -11,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.List;
@@ -51,7 +52,7 @@ public class StoreController implements Serializable {
     }
 
     @PostMapping()
-    public ResponseEntity<Void> Create(@RequestBody CreateStoreCommand command) {
+    public ResponseEntity<Void> Create(@RequestBody @Valid CreateStoreCommand command) {
         final UUID id = storeService.create(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(id).toUri();
@@ -60,7 +61,7 @@ public class StoreController implements Serializable {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Void> Update(@PathVariable("id") UUID id, @RequestBody UpdateStoreCommand command) {
+    public ResponseEntity<Void> Update(@PathVariable("id") UUID id, @RequestBody @Valid UpdateStoreCommand command) {
         if (!command.getId().equals(id))
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
 

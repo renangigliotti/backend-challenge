@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import javax.validation.Valid;
 import java.io.Serializable;
 import java.net.URI;
 import java.util.UUID;
@@ -34,8 +35,8 @@ public class RefundController implements Serializable {
         this.paymentService = paymentService;
     }
 
-    @PostMapping("orders")
-    public ResponseEntity<Void> RefundOrder(@RequestBody CreateOrderRefundCommand command) {
+    @PostMapping(value = "orders", produces = "application/json")
+    public ResponseEntity<Void> RefundOrder(@RequestBody @Valid CreateOrderRefundCommand command) {
         UUID refundId = paymentService.refund(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(refundId).toUri();
@@ -43,8 +44,8 @@ public class RefundController implements Serializable {
         return ResponseEntity.created(location).build();
     }
 
-    @PostMapping("items")
-    public ResponseEntity RefundOrderItem(@RequestBody CreateOrderItemRefundCommand command) {
+    @PostMapping(value = "items", produces = "application/json")
+    public ResponseEntity RefundOrderItem(@RequestBody @Valid CreateOrderItemRefundCommand command) {
         UUID refundId = paymentService.refund(command);
 
         final URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{id}").buildAndExpand(refundId).toUri();
