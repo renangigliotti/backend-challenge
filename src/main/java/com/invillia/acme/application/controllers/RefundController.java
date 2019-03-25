@@ -3,6 +3,7 @@ package com.invillia.acme.application.controllers;
 import com.invillia.acme.domain.commands.CreateOrderItemRefundCommand;
 import com.invillia.acme.domain.commands.CreateOrderRefundCommand;
 import com.invillia.acme.domain.services.PaymentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,6 +24,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/refunds")
+@Api(value = "Refunds", description = "Refunds controller")
 public class RefundController implements Serializable {
 
     private final PaymentService paymentService;

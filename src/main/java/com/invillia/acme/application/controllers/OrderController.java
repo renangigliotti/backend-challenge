@@ -3,6 +3,7 @@ package com.invillia.acme.application.controllers;
 import com.invillia.acme.domain.commands.CreateOrderCommand;
 import com.invillia.acme.domain.queries.OrderQuery;
 import com.invillia.acme.domain.services.OrderService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,6 +23,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/orders")
+@Api(value = "Orders", description = "Orders controller")
 public class OrderController implements Serializable {
 
     private final OrderService orderService;

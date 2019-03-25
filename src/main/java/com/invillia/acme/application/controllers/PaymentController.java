@@ -2,6 +2,7 @@ package com.invillia.acme.application.controllers;
 
 import com.invillia.acme.domain.commands.CreatePaymentCommand;
 import com.invillia.acme.domain.services.PaymentService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/payments")
+@Api(value = "Payments", description = "Payments controller")
 public class PaymentController implements Serializable {
 
     private final PaymentService paymentService;

@@ -4,6 +4,7 @@ import com.invillia.acme.domain.commands.CreateStoreCommand;
 import com.invillia.acme.domain.commands.UpdateStoreCommand;
 import com.invillia.acme.domain.queries.StoreQuery;
 import com.invillia.acme.domain.services.StoreService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -23,6 +24,7 @@ import java.util.UUID;
  */
 @RestController
 @RequestMapping("/stores")
+@Api(value = "Stores", description = "Stores controller")
 public class StoreController implements Serializable {
 
     private final StoreService storeService;
