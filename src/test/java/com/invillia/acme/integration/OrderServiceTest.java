@@ -38,7 +38,7 @@ public class OrderServiceTest {
     private final BigDecimal PRICE = new BigDecimal(10);
 
     @Before
-    public void setup() throws InterruptedException {
+    public void setup() {
         CreateStoreCommand storeCommand = new CreateStoreCommand();
         storeCommand.setName("name");
         storeCommand.setAddress("address");
@@ -60,7 +60,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void testCreate() throws InterruptedException {
+    public void testCreate() {
         OrderQuery order = orderService.find(id);
 
         Assert.assertEquals(order.getAddress(), ADDRESS);
@@ -68,7 +68,7 @@ public class OrderServiceTest {
     }
 
     @Test
-    public void TestFind() throws InterruptedException {
+    public void TestFind() {
         List<OrderQuery> orders = orderService.list();
 
         Assert.assertEquals(1, orders.size());
