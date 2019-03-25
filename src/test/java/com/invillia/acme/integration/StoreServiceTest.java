@@ -45,34 +45,52 @@ public class StoreServiceTest {
     }
 
     @Test
+    public void testListInvalidName() {
+        List<StoreQuery> stores = storeService.list(UUID.randomUUID().toString(), null);
+
+        Assert.assertTrue(stores.size() == 0);
+    }
+
+    @Test
+    public void testListInvalidAddress() {
+        List<StoreQuery> stores = storeService.list(null, UUID.randomUUID().toString());
+
+        Assert.assertTrue(stores.size() == 0);
+    }
+
+    @Test
+    public void testListInvalidNameAndAddress() {
+        List<StoreQuery> stores = storeService.list(UUID.randomUUID().toString(), UUID.randomUUID().toString());
+
+        Assert.assertTrue(stores.size() == 0);
+    }
+
+    @Test
     public void testList() {
         List<StoreQuery> stores = storeService.list(null, null);
 
-        Assert.assertEquals(1, stores.size());
+        Assert.assertTrue(stores.size() > 0);
+    }
 
-        stores = storeService.list(UUID.randomUUID().toString(), null);
+    @Test
+    public void testListByName() {
+        List<StoreQuery> stores = storeService.list(NAME, null);
 
-        Assert.assertEquals(0, stores.size());
+        Assert.assertTrue(stores.size() > 0);
+    }
 
-        stores = storeService.list(null, UUID.randomUUID().toString());
+    @Test
+    public void testListByAddress() {
+        List<StoreQuery> stores = storeService.list(null, ADDRESS);
 
-        Assert.assertEquals(0, stores.size());
+        Assert.assertTrue(stores.size() > 0);
+    }
 
-        stores = storeService.list(UUID.randomUUID().toString(), UUID.randomUUID().toString());
+    @Test
+    public void testListByNameAndAddress() {
+        List<StoreQuery> stores = storeService.list(NAME, ADDRESS);
 
-        Assert.assertEquals(0, stores.size());
-
-        stores = storeService.list(NAME, null);
-
-        Assert.assertEquals(1, stores.size());
-
-        stores = storeService.list(null, ADDRESS);
-
-        Assert.assertEquals(1, stores.size());
-
-        stores = storeService.list(NAME, ADDRESS);
-
-        Assert.assertEquals(1, stores.size());
+        Assert.assertTrue(stores.size() > 0);
     }
 
     @Test

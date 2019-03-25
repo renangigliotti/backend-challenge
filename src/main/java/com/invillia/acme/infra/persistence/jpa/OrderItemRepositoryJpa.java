@@ -1,6 +1,5 @@
 package com.invillia.acme.infra.persistence.jpa;
 
-import com.invillia.acme.domain.entity.Order;
 import com.invillia.acme.domain.entity.OrderItem;
 import com.invillia.acme.domain.repositories.OrderItemRepository;
 import org.springframework.stereotype.Repository;

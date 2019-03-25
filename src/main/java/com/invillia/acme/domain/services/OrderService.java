@@ -68,4 +68,10 @@ public class OrderService {
     public List<OrderQuery> list() {
         return orderRepository.list().stream().map(o -> new OrderQuery(o.getId(), o.getStore().getId(), o.getAddress(), o.getStatus().toString())).collect(Collectors.toList());
     }
+
+    public OrderQuery find(UUID id) {
+        Order order = orderRepository.find(id).orElseThrow(NotFoundException::new);
+
+        return new OrderQuery(order.getId(), order.getStore().getId(), order.getAddress(), order.getStatus().toString());
+    }
 }

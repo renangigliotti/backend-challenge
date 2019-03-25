@@ -10,5 +10,5 @@ public class CreateOrderCommand {
 
     private String address;
     private UUID storeId;
-    private List<OrdemItenCommand> items;
+    private List<OrderItemCommand> items;
 }
